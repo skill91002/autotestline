@@ -1,4 +1,0 @@
-06/03/2021 15:06:12 SUCCESS! MMS TEST-1: mms enable
-06/03/2021 15:06:12 SUCCESS! MMS TEST-1: mms disable
-06/03/2021 15:06:20 SUCCESS! MMS TEST-2: mms t-profile enable
-06/03/2021 15:06:20 SUCCESS! MMS TEST-2: mms t-profile disable

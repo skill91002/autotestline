@@ -38,26 +38,31 @@ def handle_text_message(event):
     time.sleep(1.5)
 
     if event.message.text == "Basic":
-        content = "You choose Basic"
+        content = "You choose Basic,\nthe test result will be report by line notify."
         linebot_client.reply_message(
             event.reply_token,
             TextSendMessage(content)
         )
+        os.system("cd /home/jim/AutoTestSuite/ExpectScriptAutoTest")
+        os.system("sh /home/jim/AutoTestSuite/ExpectScriptAutoTest/feature/Basic_System/basicsystem_auto_test_linedemo.sh")
+
     elif event.message.text == "MMS":
         content = "You choose MMS,\nthe test result will be report by line notify."
         linebot_client.reply_message(
             event.reply_token,
             TextSendMessage(content)
         )
-        os.system("cd /home/moxa/ExpectScriptAutoTest/MMS")
-        os.system("sh /home/moxa/ExpectScriptAutoTest/MMS/mms_auto_test.sh")
+        os.system("cd /home/jim/AutoTestSuite/ExpectScriptAutoTest/feature/MMS")
+        os.system("sh /home/jim/AutoTestSuite/ExpectScriptAutoTest/feature/MMS/mms_auto_test_linedemo.sh")
     elif event.message.text == "Dot1x":
-        content = "You choose Dot1x"
+        content = "You choose Dot1x,\nthe test result will be report by line notify."
         linebot_client.reply_message(
             event.reply_token,
             TextSendMessage(content)
         )
-    elif event.message.text == 'test':
+        os.system("cd /home/jim/AutoTestSuite/ExpectScriptAutoTest/feature/Dot1x")
+        os.system("sh /home/jim/AutoTestSuite/ExpectScriptAutoTest/feature/Dot1x/dot1x_auto_test_linedemo.sh")
+    elif event.message.text == 'hello':
         linebot_client.reply_message(
             event.reply_token,
             TemplateSendMessage(
