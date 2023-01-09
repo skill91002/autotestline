@@ -9,6 +9,7 @@ import os, sys
 import random
 import time
 import subprocess
+import openai
 
 linebot_client = LineBotApi("/diBCY/NIHQdUmXML33amlI/a6j8JQva55yTjB4RjTkBjckI2PxItJRh8vRk1n9Eo6fVJoTFCX+aBDBQvRnJtfrV1KUUbMVTXCvdts0AoRC30Mbe2rDe3GRGQksXVwxjqfK6NdWOHdnQPcjGa8+SFAdB04t89/1O/w1cDnyilFU=")
 linebot_handler = WebhookHandler("3a7f225af653746219179110ad663f74")
@@ -88,18 +89,21 @@ def handle_text_message(event):
                 )
             )
         )
+    else:
+        openai.api_key = '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'
+        response = openai.Completion.create(
+                engine='text-davinci-003',
+                prompt=event.message.text,
+                max_tokens=256,
+                temperature=0.5
+                )
+        reply_msg = response["choices"][0]["text"].replace('\n','')
+        linebot_client.reply_message(
+                event.reply_token,
+                TextSendMessage(text=reply_msg)
+                )
+        pass
 
-    linebot_client.reply_message(
-        event.reply_token,
-        TextSendMessage(
-            random.choice([
-                '好',
-                'ok',
-                '恩～',
-                '我知道了',
-            ])
-        )
-    )
 
 if __name__ == '__main__':
     app.run(debug=True)
